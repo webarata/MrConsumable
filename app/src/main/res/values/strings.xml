@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">MrConsumable</string>
-    <string name="action_settings">Settings</string>
+ <string name="app_name">消耗品便利君</string>
+ <string name="action_license">ライセンス</string>
 </resources>
