@@ -28,4 +28,4 @@ script:
   - ./gradlew --info clean :app:connectedAndroidTest
 
 after_success:
-    - ./gradlew jacocoTestReport coveralls
+    - ./gradlew coveralls

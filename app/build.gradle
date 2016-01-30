@@ -30,3 +30,5 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
 }
+
+apply plugin: 'com.github.kt3k.coveralls'
