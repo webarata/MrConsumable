@@ -1,4 +1,10 @@
 language: android
+jdk: oraclejdk7
+sudo: false
+env:
+  global:
+  - GRADLE_OPTS="-Xmx512m -XX:MaxPermSize=512m"
+  - ADB_INSTALL_TIMEOUT=10
 
 android:
   components:
