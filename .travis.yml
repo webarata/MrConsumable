@@ -20,7 +20,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - ./gradlew --info clean :app:connectedAndroidTest
+  - ./gradlew clean connectedAndroidTest
 
 after_success:
     - ./gradlew coveralls
