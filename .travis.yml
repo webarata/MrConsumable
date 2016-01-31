@@ -23,6 +23,5 @@ script:
   - ./gradlew clean connectedAndroidTest
 
 after_success:
-  - mkdir -p ./app/build/reports/jacoco/test
-  - mv ./app/build/reports/coverage/debug/report.xml ./app/build/reports/jacoco/test/jacocoTestReport.xml
-  - ./gradlew coveralls
+    - ./gradlew coveralls
+
