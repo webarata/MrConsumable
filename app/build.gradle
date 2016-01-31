@@ -34,7 +34,3 @@ dependencies {
 }
 
 apply plugin: 'com.github.kt3k.coveralls'
-
-coveralls {
-    jacocoReportPath = 'build/reports/coverage/debug/report.xml'
-}
