@@ -35,4 +35,7 @@ dependencies {
 
 apply plugin: 'com.github.kt3k.coveralls'
 
+coveralls {
+    sourceDirs = files(subprojects.sourceSets.main.allSource.srcDirs).files.absolutePath
+}
 coveralls.jacocoReportPath = 'build/reports/coverage/debug/report.xml'
