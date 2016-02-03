@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import net.kuwalab.android.consumable.dao.ConsumablePicDao;
-import net.kuwalab.android.consumable.entity.ConsumablePic;
+import link.arata.android.mrconsumable.dao.ConsumablePicDao;
+import link.arata.android.mrconsumable.entity.ConsumablePic;
 
 public class ConsumablePicDaoImpl implements ConsumablePicDao {
     private SQLiteDatabase db;

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import link.arata.android.mrconsumable.entity.Consumable;
+import link.arata.android.mrconsumable.entity.ConsumablePic;
 import link.arata.android.mrconsumable.entity.Shop;
 
 public class AppOpenHelper extends SQLiteOpenHelper {
@@ -36,15 +37,15 @@ public class AppOpenHelper extends SQLiteOpenHelper {
             Consumable.CONSUMABLE_DATE + " TEXT DEFAULT '' NOT NULL, " +
             Consumable.CONSUMABLE_COUNT + " INTEGER DEFAULT -1 NOT NULL)");
 
-//        db.execSQL("CREATE TABLE " + ConsumablePic.NAME + "(" +
-//            ConsumablePic.CONSUMABLE_PIC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//            ConsumablePic.CONSUMABLE_ID + " TEXT NOT NULL, " +
-//            ConsumablePic.CONSUMABLE_PIC + " BLOB NOT NULL)");
+        db.execSQL("CREATE TABLE " + ConsumablePic.NAME + "(" +
+            ConsumablePic.CONSUMABLE_PIC_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            ConsumablePic.CONSUMABLE_ID + " TEXT NOT NULL, " +
+            ConsumablePic.CONSUMABLE_PIC + " BLOB NOT NULL)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("drop table " + ConsumablePic.NAME);
+        db.execSQL("drop table " + ConsumablePic.NAME);
         db.execSQL("drop table " + Consumable.NAME);
         db.execSQL("drop table " + Shop.NAME);
 

@@ -8,17 +8,17 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.RenamingDelegatingContext;
 
-import net.kuwalab.android.consumable.dao.impl.ConsumablePicDaoImpl;
-import net.kuwalab.android.consumable.entity.ConsumablePic;
-import net.kuwalab.android.consumable.helper.AppOpenHelper;
-import net.kuwalab.android.consumable.util.IoUtil;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.InputStream;
+
+import link.arata.android.mrconsumable.dao.impl.ConsumablePicDaoImpl;
+import link.arata.android.mrconsumable.entity.ConsumablePic;
+import link.arata.android.mrconsumable.helper.AppOpenHelper;
+import link.arata.android.mrconsumable.util.IoUtil;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
