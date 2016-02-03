@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import link.arata.android.mrconsumable.entity.Consumable;
+import link.arata.android.mrconsumable.entity.Shop;
 
 public class AppOpenHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "app";
@@ -21,10 +22,10 @@ public class AppOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        db.execSQL("CREATE TABLE " + Shop.NAME +"(" +
-//            Shop.SHOP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//            Shop.SHOP_NAME + " TEXT NOT NULL, " +
-//            Shop.SHOP_FURIGANA + " TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE " + Shop.NAME +"(" +
+            Shop.SHOP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            Shop.SHOP_NAME + " TEXT NOT NULL, " +
+            Shop.SHOP_FURIGANA + " TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE " + Consumable.NAME + "(" +
             Consumable.CONSUMABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -45,7 +46,7 @@ public class AppOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //        db.execSQL("drop table " + ConsumablePic.NAME);
         db.execSQL("drop table " + Consumable.NAME);
-//        db.execSQL("drop table " + Shop.NAME);
+        db.execSQL("drop table " + Shop.NAME);
 
         onCreate(db);
     }
