@@ -1,4 +1,9 @@
 <resources>
  <string name="app_name">消耗品便利君</string>
  <string name="action_license">ライセンス</string>
+
+ <string name="entity_consumable_name">消耗品名</string>
+ <string name="entity_consumable_furigana">消耗品名フリガナ</string>
+ <string name="entity_consumable_note">備考</string>
+ <string name="entity_consumable_price">最安値</string>
 </resources>
