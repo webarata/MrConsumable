@@ -1,6 +1,8 @@
 package link.arata.android.mrconsumable;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,8 +14,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ListView;
+
+import java.util.List;
+
+import link.arata.android.mrconsumable.dao.ConsumableDao;
+import link.arata.android.mrconsumable.dao.impl.ConsumableDaoImpl;
+import link.arata.android.mrconsumable.entity.Consumable;
+import link.arata.android.mrconsumable.helper.AppOpenHelper;
 
 public class MainActivity extends AppCompatActivity {
+    private ListView consumableListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +37,29 @@ public class MainActivity extends AppCompatActivity {
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent();
+                intent.setClassName("link.arata.android.mrconsumable",
+                    "link.arata.android.mrconsumable.NewActivity");
+
+                startActivity(intent);
             }
         });
+        consumableListView = (ListView) findViewById(R.id.consumableListView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        AppOpenHelper appOpenHelper = new AppOpenHelper(this);
+        SQLiteDatabase db = appOpenHelper.getReadableDatabase();
+        ConsumableDao consumableDao = new ConsumableDaoImpl(db);
+        List<Consumable> consumableList = consumableDao.selectAll();
+        db.close();
+        appOpenHelper.close();
+
+        ConsumableAdapter consumableAdapter = new ConsumableAdapter(this, 0, consumableList);
+        consumableListView.setAdapter(consumableAdapter);
     }
 
     @Override

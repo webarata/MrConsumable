@@ -1,6 +1,10 @@
 <resources>
  <string name="app_name">消耗品便利君</string>
  <string name="action_license">ライセンス</string>
+ <string name="app_new_name">新しい消耗品の追加</string>
+ <string name="action_change">変更</string>
+
+ <string name="image_consumable_pic">消耗品の画像</string>
 
  <string name="entity_consumable_name">消耗品名</string>
  <string name="entity_consumable_furigana">消耗品名フリガナ</string>

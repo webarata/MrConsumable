@@ -37,3 +37,6 @@ apply plugin: 'com.github.kt3k.coveralls'
 coveralls {
     jacocoReportPath = 'build/reports/coverage/debug/report.xml'
 }
+dependencies {
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+}
