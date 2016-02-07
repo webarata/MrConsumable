@@ -49,8 +49,8 @@ public class NewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+//        setSupportActionBar(toolbar);
 
         nameEditText = (AppCompatEditText) findViewById(R.id.nameEditText);
         furiganaEditText = (AppCompatEditText) findViewById(R.id.furiganaEditText);
