@@ -19,8 +19,7 @@
    <category android:name="android.intent.category.LAUNCHER" />
   </intent-filter>
  </activity>
- <activity
-  android:name=".NewActivity"
-  android:label="@string/app_new_name"></activity>
+ <android:name=".NewActivity"
+  android:label="@string/app_new_name" />
  </application>
 </manifest>
