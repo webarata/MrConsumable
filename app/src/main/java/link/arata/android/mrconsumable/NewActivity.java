@@ -70,6 +70,10 @@ public class NewActivity extends AppCompatActivity {
                     nameEditText.setError("入力してください");
                     return;
                 }
+                if (furigana.length() == 0) {
+                    furiganaEditText.setError("入力してください");
+                    return;
+                }
 
                 if (name.length() != 0) {
                     AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
