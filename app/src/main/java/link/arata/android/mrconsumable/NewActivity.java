@@ -66,10 +66,6 @@ public class NewActivity extends AppCompatActivity {
                 String furigana = furiganaEditText.getText().toString();
                 String note = noteEditText.getText().toString();
 
-                nameEditText.setText("");
-                furiganaEditText.setText("");
-                noteEditText.setText("");
-
                 if (name.length() != 0) {
                     AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
                     SQLiteDatabase db = appOpenHelper.getWritableDatabase();
@@ -97,6 +93,11 @@ public class NewActivity extends AppCompatActivity {
 
                     db.close();
                     appOpenHelper.close();
+
+                    // 登録できたらフォームの情報を消す
+                    nameEditText.setText("");
+                    furiganaEditText.setText("");
+                    noteEditText.setText("");
 
                     Toast.makeText(v.getContext(), "消耗品を登録しました", Toast.LENGTH_SHORT).show();
                 }
