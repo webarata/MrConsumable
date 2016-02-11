@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -38,6 +39,7 @@ public class NewActivity extends AppCompatActivity {
     private AppCompatEditText nameEditText;
     private AppCompatEditText furiganaEditText;
     private AppCompatEditText noteEditText;
+    private AppCompatButton registerButton;
 
     private Uri pictureUri;
     private String imagePath;
@@ -55,6 +57,51 @@ public class NewActivity extends AppCompatActivity {
         nameEditText = (AppCompatEditText) findViewById(R.id.nameEditText);
         furiganaEditText = (AppCompatEditText) findViewById(R.id.furiganaEditText);
         noteEditText = (AppCompatEditText) findViewById(R.id.noteEditText);
+        registerButton = (AppCompatButton) findViewById(R.id.registerButton);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = nameEditText.getText().toString();
+                String furigana = furiganaEditText.getText().toString();
+                String note = noteEditText.getText().toString();
+
+                nameEditText.setText("");
+                furiganaEditText.setText("");
+                noteEditText.setText("");
+
+                if (name.length() != 0) {
+                    AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
+                    SQLiteDatabase db = appOpenHelper.getWritableDatabase();
+                    ConsumableDao consumableDao = new ConsumableDaoImpl(db);
+
+                    Consumable consumable = new Consumable();
+                    consumable.setConsumableName(name);
+                    consumable.setConsumableFurigana(furigana);
+                    consumable.setConsumableNote(note);
+
+                    long consumableId = consumableDao.insertInit(consumable);
+
+                    if (imagePath != null) {
+                        ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
+                        ConsumablePic consumablePic = new ConsumablePic();
+                        consumablePic.setConsumableId(consumableId);
+                        InputStream is = null;
+                        try {
+                            is = new FileInputStream(new File(imagePath));
+                            consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
+                            consumablePicDao.insert(consumablePic);
+                        } catch (IOException e) {
+                        }
+                    }
+
+                    db.close();
+                    appOpenHelper.close();
+
+                    Toast.makeText(v.getContext(), "消耗品を登録しました", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         findViewById(R.id.cameraButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,45 +176,6 @@ public class NewActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
-        String name = nameEditText.getText().toString();
-        String furigana = furiganaEditText.getText().toString();
-        String note = noteEditText.getText().toString();
-
-        nameEditText.setText("");
-        furiganaEditText.setText("");
-        noteEditText.setText("");
-
-        if (name.length() != 0) {
-            AppOpenHelper appOpenHelper = new AppOpenHelper(this);
-            SQLiteDatabase db = appOpenHelper.getWritableDatabase();
-            ConsumableDao consumableDao = new ConsumableDaoImpl(db);
-
-            Consumable consumable = new Consumable();
-            consumable.setConsumableName(name);
-            consumable.setConsumableFurigana(furigana);
-            consumable.setConsumableNote(note);
-
-            long consumableId = consumableDao.insertInit(consumable);
-
-            if (imagePath != null) {
-                ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
-                ConsumablePic consumablePic = new ConsumablePic();
-                consumablePic.setConsumableId(consumableId);
-                InputStream is = null;
-                try {
-                    is = new FileInputStream(new File(imagePath));
-                    consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
-                    consumablePicDao.insert(consumablePic);
-                } catch (IOException e) {
-                }
-            }
-
-            db.close();
-            appOpenHelper.close();
-
-            Toast.makeText(this, "消耗品を登録しました", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
