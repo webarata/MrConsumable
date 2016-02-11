@@ -66,6 +66,11 @@ public class NewActivity extends AppCompatActivity {
                 String furigana = furiganaEditText.getText().toString();
                 String note = noteEditText.getText().toString();
 
+                if (name.length() == 0) {
+                    nameEditText.setError("入力してください");
+                    return;
+                }
+
                 if (name.length() != 0) {
                     AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
                     SQLiteDatabase db = appOpenHelper.getWritableDatabase();
@@ -98,6 +103,8 @@ public class NewActivity extends AppCompatActivity {
                     nameEditText.setText("");
                     furiganaEditText.setText("");
                     noteEditText.setText("");
+
+                    finish();
 
                     Toast.makeText(v.getContext(), "消耗品を登録しました", Toast.LENGTH_SHORT).show();
                 }
