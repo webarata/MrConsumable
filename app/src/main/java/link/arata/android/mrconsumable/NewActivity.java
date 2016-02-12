@@ -23,6 +23,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import link.arata.android.mrconsumable.dao.ConsumableDao;
 import link.arata.android.mrconsumable.dao.ConsumablePicDao;
@@ -33,6 +35,9 @@ import link.arata.android.mrconsumable.entity.ConsumablePic;
 import link.arata.android.mrconsumable.helper.AppOpenHelper;
 import link.arata.android.mrconsumable.util.ImageUtil;
 import link.arata.android.mrconsumable.util.IoUtil;
+import link.arata.android.mrconsumable.validator.RequiredValidator;
+import link.arata.android.mrconsumable.validator.Validator;
+import link.arata.android.mrconsumable.validator.ValidatorUtil;
 
 
 public class NewActivity extends AppCompatActivity {
@@ -66,16 +71,19 @@ public class NewActivity extends AppCompatActivity {
                 String furigana = furiganaEditText.getText().toString();
                 String note = noteEditText.getText().toString();
 
-                if (name.length() == 0) {
-                    nameEditText.setError("入力してください");
-                    return;
+                String message = ValidatorUtil.validate(nameEditText.getText().toString(), new RequiredValidator());
+                boolean isValid = true;
+                if (message != null) {
+                    nameEditText.setError(message);
+                    isValid = false;
                 }
-                if (furigana.length() == 0) {
-                    furiganaEditText.setError("入力してください");
-                    return;
+                message = ValidatorUtil.validate(furiganaEditText.getText().toString(), new RequiredValidator());
+                if (message != null) {
+                    furiganaEditText.setError(message);
+                    isValid = false;
                 }
 
-                if (name.length() != 0) {
+                if (isValid) {
                     AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
                     SQLiteDatabase db = appOpenHelper.getWritableDatabase();
                     ConsumableDao consumableDao = new ConsumableDaoImpl(db);
