@@ -12,7 +12,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,8 +22,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import link.arata.android.mrconsumable.dao.ConsumableDao;
 import link.arata.android.mrconsumable.dao.ConsumablePicDao;
@@ -36,10 +33,7 @@ import link.arata.android.mrconsumable.helper.AppOpenHelper;
 import link.arata.android.mrconsumable.util.ImageUtil;
 import link.arata.android.mrconsumable.util.IoUtil;
 import link.arata.android.mrconsumable.validator.EditTextValidatorUtil;
-import link.arata.android.mrconsumable.validator.RequiredValidator;
-import link.arata.android.mrconsumable.validator.Validator;
-import link.arata.android.mrconsumable.validator.ValidatorUtil;
-
+import link.arata.android.mrconsumable.validator.RequiredValidator;ß
 
 public class NewActivity extends AppCompatActivity {
     private AppCompatEditText nameEditText;

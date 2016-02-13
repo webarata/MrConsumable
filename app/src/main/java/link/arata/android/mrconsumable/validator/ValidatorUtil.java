@@ -1,5 +1,6 @@
 package link.arata.android.mrconsumable.validator;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public abstract class ValidatorUtil {
      * @return エラーメッセージ。なければnull
      */
     @Nullable
-    public static String validate(String text, Validator... validators) {
+    public static String validate(@NonNull String text, @NonNull Validator... validators) {
         String trimText = text.trim();
         String message = null;
         for (Validator validator: validators) {
