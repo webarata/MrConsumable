@@ -35,6 +35,7 @@ import link.arata.android.mrconsumable.entity.ConsumablePic;
 import link.arata.android.mrconsumable.helper.AppOpenHelper;
 import link.arata.android.mrconsumable.util.ImageUtil;
 import link.arata.android.mrconsumable.util.IoUtil;
+import link.arata.android.mrconsumable.validator.EditTextValidatorUtil;
 import link.arata.android.mrconsumable.validator.RequiredValidator;
 import link.arata.android.mrconsumable.validator.Validator;
 import link.arata.android.mrconsumable.validator.ValidatorUtil;
@@ -71,17 +72,8 @@ public class NewActivity extends AppCompatActivity {
                 String furigana = furiganaEditText.getText().toString();
                 String note = noteEditText.getText().toString();
 
-                String message = ValidatorUtil.validate(nameEditText.getText().toString(), new RequiredValidator());
-                boolean isValid = true;
-                if (message != null) {
-                    nameEditText.setError(message);
-                    isValid = false;
-                }
-                message = ValidatorUtil.validate(furiganaEditText.getText().toString(), new RequiredValidator());
-                if (message != null) {
-                    furiganaEditText.setError(message);
-                    isValid = false;
-                }
+                boolean isValid = EditTextValidatorUtil.valid(nameEditText, new RequiredValidator());
+                isValid = isValid & EditTextValidatorUtil.valid(furiganaEditText, new RequiredValidator());
 
                 if (isValid) {
                     AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
