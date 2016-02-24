@@ -23,6 +23,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import link.arata.android.common.validator.RequiredValidator;
+import link.arata.android.common.validator.Validator;
 import link.arata.android.mrconsumable.dao.ConsumableDao;
 import link.arata.android.mrconsumable.dao.ConsumablePicDao;
 import link.arata.android.mrconsumable.dao.impl.ConsumableDaoImpl;
@@ -33,7 +35,6 @@ import link.arata.android.mrconsumable.helper.AppOpenHelper;
 import link.arata.android.mrconsumable.util.ImageUtil;
 import link.arata.android.mrconsumable.util.IoUtil;
 import link.arata.android.mrconsumable.validator.EditTextValidatorUtil;
-import link.arata.android.mrconsumable.validator.RequiredValidator;ß
 
 public class NewActivity extends AppCompatActivity {
     private AppCompatEditText nameEditText;
@@ -66,8 +67,8 @@ public class NewActivity extends AppCompatActivity {
                 String furigana = furiganaEditText.getText().toString();
                 String note = noteEditText.getText().toString();
 
-                boolean isValid = EditTextValidatorUtil.valid(nameEditText, new RequiredValidator());
-                isValid = isValid & EditTextValidatorUtil.valid(furiganaEditText, new RequiredValidator());
+                boolean isValid = EditTextValidatorUtil.valid(v.getContext(), nameEditText, new Validator[] {new RequiredValidator()});
+                isValid = isValid & EditTextValidatorUtil.valid(v.getContext(), furiganaEditText, new Validator[] {new RequiredValidator()});
 
                 if (isValid) {
                     AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());

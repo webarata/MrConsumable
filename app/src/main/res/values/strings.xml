@@ -12,4 +12,6 @@
  <string name="entity_consumable_furigana">消耗品名フリガナ</string>
  <string name="entity_consumable_note">備考</string>
  <string name="entity_consumable_price">最安値</string>
+
+ <string name="validator_required">入力してください2</string>
 </resources>
