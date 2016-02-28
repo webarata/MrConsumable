@@ -1,9 +1,9 @@
-package link.arata.android.mrconsumable.dao;
+package link.arata.dro.mrconsumable.dao;
 
 
 import java.util.List;
 
-import link.arata.android.mrconsumable.entity.Shop;
+import link.arata.dro.mrconsumable.entity.Shop;
 
 public interface ShopDao {
     long insert(Shop shop);

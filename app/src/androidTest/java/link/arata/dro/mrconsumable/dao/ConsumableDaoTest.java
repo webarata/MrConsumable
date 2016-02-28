@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.dao;
+package link.arata.dro.mrconsumable.dao;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -14,9 +14,9 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import link.arata.android.mrconsumable.dao.impl.ConsumableDaoImpl;
-import link.arata.android.mrconsumable.entity.Consumable;
-import link.arata.android.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
+import link.arata.dro.mrconsumable.entity.Consumable;
+import link.arata.dro.mrconsumable.helper.AppOpenHelper;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

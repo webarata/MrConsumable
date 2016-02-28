@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.dao.impl;
+package link.arata.dro.mrconsumable.dao.impl;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import link.arata.android.mrconsumable.dao.ConsumablePicDao;
-import link.arata.android.mrconsumable.entity.ConsumablePic;
+import link.arata.dro.mrconsumable.dao.ConsumablePicDao;
+import link.arata.dro.mrconsumable.entity.ConsumablePic;
 
 public class ConsumablePicDaoImpl implements ConsumablePicDao {
     private SQLiteDatabase db;

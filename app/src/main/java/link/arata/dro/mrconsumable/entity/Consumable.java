@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.entity;
+package link.arata.dro.mrconsumable.entity;
 
 import java.util.HashMap;
 import java.util.Map;

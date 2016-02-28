@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.dao;
+package link.arata.dro.mrconsumable.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,10 +15,10 @@ import org.junit.runner.RunWith;
 
 import java.io.InputStream;
 
-import link.arata.android.mrconsumable.dao.impl.ConsumablePicDaoImpl;
-import link.arata.android.mrconsumable.entity.ConsumablePic;
-import link.arata.android.mrconsumable.helper.AppOpenHelper;
-import link.arata.android.mrconsumable.util.IoUtil;
+import link.arata.dro.mrconsumable.dao.impl.ConsumablePicDaoImpl;
+import link.arata.dro.mrconsumable.entity.ConsumablePic;
+import link.arata.dro.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.util.IoUtil;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;

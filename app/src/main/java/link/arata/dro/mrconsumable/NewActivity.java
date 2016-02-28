@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable;
+package link.arata.dro.mrconsumable;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -25,16 +25,16 @@ import java.io.InputStream;
 
 import link.arata.android.common.validator.RequiredValidator;
 import link.arata.android.common.validator.Validator;
-import link.arata.android.mrconsumable.dao.ConsumableDao;
-import link.arata.android.mrconsumable.dao.ConsumablePicDao;
-import link.arata.android.mrconsumable.dao.impl.ConsumableDaoImpl;
-import link.arata.android.mrconsumable.dao.impl.ConsumablePicDaoImpl;
-import link.arata.android.mrconsumable.entity.Consumable;
-import link.arata.android.mrconsumable.entity.ConsumablePic;
-import link.arata.android.mrconsumable.helper.AppOpenHelper;
-import link.arata.android.mrconsumable.util.ImageUtil;
-import link.arata.android.mrconsumable.util.IoUtil;
-import link.arata.android.mrconsumable.validator.EditTextValidatorUtil;
+import link.arata.dro.mrconsumable.dao.ConsumableDao;
+import link.arata.dro.mrconsumable.dao.ConsumablePicDao;
+import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
+import link.arata.dro.mrconsumable.dao.impl.ConsumablePicDaoImpl;
+import link.arata.dro.mrconsumable.entity.Consumable;
+import link.arata.dro.mrconsumable.entity.ConsumablePic;
+import link.arata.dro.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.util.ImageUtil;
+import link.arata.dro.mrconsumable.util.IoUtil;
+import link.arata.dro.mrconsumable.validator.EditTextValidatorUtil;
 
 public class NewActivity extends AppCompatActivity {
     private AppCompatEditText nameEditText;

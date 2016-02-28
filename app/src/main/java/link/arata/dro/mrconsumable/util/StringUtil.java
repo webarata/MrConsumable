@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.util;
+package link.arata.dro.mrconsumable.util;
 
 public class StringUtil {
     /**

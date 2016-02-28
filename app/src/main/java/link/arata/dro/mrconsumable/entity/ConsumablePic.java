@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.entity;
+package link.arata.dro.mrconsumable.entity;
 
 public class ConsumablePic {
     /** テーブル名 */

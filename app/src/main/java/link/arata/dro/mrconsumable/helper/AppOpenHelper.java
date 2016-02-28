@@ -1,12 +1,12 @@
-package link.arata.android.mrconsumable.helper;
+package link.arata.dro.mrconsumable.helper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import link.arata.android.mrconsumable.entity.Consumable;
-import link.arata.android.mrconsumable.entity.ConsumablePic;
-import link.arata.android.mrconsumable.entity.Shop;
+import link.arata.dro.mrconsumable.entity.Consumable;
+import link.arata.dro.mrconsumable.entity.ConsumablePic;
+import link.arata.dro.mrconsumable.entity.Shop;
 
 public class AppOpenHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "app";

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "link.arata.android.mrconsumable"
+        applicationId "link.arata.dro.mrconsumable"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1

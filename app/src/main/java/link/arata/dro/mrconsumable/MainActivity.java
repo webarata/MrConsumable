@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable;
+package link.arata.dro.mrconsumable;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,10 +17,11 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import link.arata.android.mrconsumable.dao.ConsumableDao;
-import link.arata.android.mrconsumable.dao.impl.ConsumableDaoImpl;
-import link.arata.android.mrconsumable.entity.Consumable;
-import link.arata.android.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.ConsumableAdapter;
+import link.arata.dro.mrconsumable.dao.ConsumableDao;
+import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
+import link.arata.dro.mrconsumable.entity.Consumable;
+import link.arata.dro.mrconsumable.helper.AppOpenHelper;
 
 public class MainActivity extends AppCompatActivity {
     private ListView consumableListView;
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClassName("link.arata.android.mrconsumable",
-                    "link.arata.android.mrconsumable.NewActivity");
+                intent.setClassName("link.arata.dro.mrconsumable",
+                    "link.arata.dro.mrconsumable.NewActivity");
 
                 startActivity(intent);
             }

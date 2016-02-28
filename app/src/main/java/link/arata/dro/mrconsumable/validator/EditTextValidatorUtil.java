@@ -1,7 +1,6 @@
-package link.arata.android.mrconsumable.validator;
+package link.arata.dro.mrconsumable.validator;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatEditText;
 import android.widget.EditText;
 
 import link.arata.android.common.validator.Validator;

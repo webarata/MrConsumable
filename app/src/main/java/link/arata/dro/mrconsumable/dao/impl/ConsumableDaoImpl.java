@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.dao.impl;
+package link.arata.dro.mrconsumable.dao.impl;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -9,8 +9,8 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import link.arata.android.mrconsumable.dao.ConsumableDao;
-import link.arata.android.mrconsumable.entity.Consumable;
+import link.arata.dro.mrconsumable.dao.ConsumableDao;
+import link.arata.dro.mrconsumable.entity.Consumable;
 
 public class ConsumableDaoImpl implements ConsumableDao {
     private SQLiteDatabase db;

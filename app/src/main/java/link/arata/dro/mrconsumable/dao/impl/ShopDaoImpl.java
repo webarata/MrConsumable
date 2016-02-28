@@ -1,4 +1,4 @@
-package link.arata.android.mrconsumable.dao.impl;
+package link.arata.dro.mrconsumable.dao.impl;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,8 +8,8 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import link.arata.android.mrconsumable.dao.ShopDao;
-import link.arata.android.mrconsumable.entity.Shop;
+import link.arata.dro.mrconsumable.dao.ShopDao;
+import link.arata.dro.mrconsumable.entity.Shop;
 
 public class ShopDaoImpl implements ShopDao {
     private SQLiteDatabase db;
