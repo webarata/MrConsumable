@@ -23,8 +23,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import link.arata.android.common.validator.RequiredValidator;
-import link.arata.android.common.validator.Validator;
+import link.arata.common.enums.LineBreakType;
+import link.arata.common.enums.TrimType;
+import link.arata.common.helper.ValidationHelper;
+import link.arata.dro.common.validator.RequiredValidator;
+import link.arata.dro.common.validator.ValidatorUtil;
 import link.arata.dro.mrconsumable.dao.ConsumableDao;
 import link.arata.dro.mrconsumable.dao.ConsumablePicDao;
 import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
@@ -34,7 +37,6 @@ import link.arata.dro.mrconsumable.entity.ConsumablePic;
 import link.arata.dro.mrconsumable.helper.AppOpenHelper;
 import link.arata.dro.mrconsumable.util.ImageUtil;
 import link.arata.dro.mrconsumable.util.IoUtil;
-import link.arata.dro.mrconsumable.validator.EditTextValidatorUtil;
 
 public class NewActivity extends AppCompatActivity {
     private AppCompatEditText nameEditText;
@@ -67,8 +69,11 @@ public class NewActivity extends AppCompatActivity {
                 String furigana = furiganaEditText.getText().toString();
                 String note = noteEditText.getText().toString();
 
-                boolean isValid = EditTextValidatorUtil.valid(v.getContext(), nameEditText, new Validator[] {new RequiredValidator()});
-                isValid = isValid & EditTextValidatorUtil.valid(v.getContext(), furiganaEditText, new Validator[] {new RequiredValidator()});
+                ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.NONE, LineBreakType.LF);
+                boolean isValid = ValidatorUtil.validateEditText(v.getContext(), validationHelper, nameEditText,
+                    new RequiredValidator());
+                isValid = isValid & ValidatorUtil.validateEditText(v.getContext(), validationHelper, furiganaEditText,
+                    new RequiredValidator());
 
                 if (isValid) {
                     AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
