@@ -22,9 +22,24 @@ import link.arata.dro.mrconsumable.dao.ConsumableDao;
 import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
 import link.arata.dro.mrconsumable.entity.Consumable;
 import link.arata.dro.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.model.ConsumableModel;
+import link.arata.dro.mrconsumable.model.ModelEvent;
+import link.arata.dro.mrconsumable.model.Observer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Observer {
     private ListView consumableListView;
+
+    private ConsumableModel consumableModel;
+
+    @Override
+    public void notify(ModelEvent modelEvent) {
+        switch (modelEvent) {
+            case FINISH_FETCH_CONSUMABLE_LIST:
+                ConsumableAdapter consumableAdapter = new ConsumableAdapter(this, 0, consumableModel.getConsumableList());
+                consumableListView.setAdapter(consumableAdapter);
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        consumableModel = ConsumableModel.getInstance();
+        consumableModel.addObserver(this);
 
         FloatingActionButton newButton = (FloatingActionButton) findViewById(R.id.newButton);
         newButton.setOnClickListener(new View.OnClickListener() {
@@ -51,15 +69,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        AppOpenHelper appOpenHelper = new AppOpenHelper(this);
-        SQLiteDatabase db = appOpenHelper.getReadableDatabase();
-        ConsumableDao consumableDao = new ConsumableDaoImpl(db);
-        List<Consumable> consumableList = consumableDao.selectAll();
-        db.close();
-        appOpenHelper.close();
-
-        ConsumableAdapter consumableAdapter = new ConsumableAdapter(this, 0, consumableList);
-        consumableListView.setAdapter(consumableAdapter);
+        consumableModel.fetchConsumableList(this);
     }
 
     @Override
