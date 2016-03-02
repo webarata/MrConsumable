@@ -55,11 +55,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClassName("link.arata.dro.mrconsumable",
-                    "link.arata.dro.mrconsumable.NewActivity");
-
-                startActivity(intent);
+                startActivity(NewActivity.createIntent(getApplicationContext()));
             }
         });
         consumableListView = (ListView) findViewById(R.id.consumableListView);

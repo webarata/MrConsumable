@@ -2,6 +2,7 @@ package link.arata.dro.mrconsumable;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -48,6 +49,12 @@ public class NewActivity extends AppCompatActivity {
     private String imagePath;
     private static final int REQUEST_CODE_TAKE_IMAGE = 0;
     private static final int REQUEST_CODE_IMAGE_CHOOSER = 1;
+
+    public static Intent createIntent(Context context) {
+        Intent intent = new Intent();
+        intent.setClass(context, NewActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
