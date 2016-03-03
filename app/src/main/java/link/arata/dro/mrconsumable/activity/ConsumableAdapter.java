@@ -1,4 +1,4 @@
-package link.arata.dro.mrconsumable;
+package link.arata.dro.mrconsumable.activity;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 
 import java.util.List;
 
+import link.arata.dro.mrconsumable.R;
 import link.arata.dro.mrconsumable.entity.Consumable;
 
 public class ConsumableAdapter extends ArrayAdapter<Consumable> {

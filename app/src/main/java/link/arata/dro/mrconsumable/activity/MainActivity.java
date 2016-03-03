@@ -1,8 +1,6 @@
-package link.arata.dro.mrconsumable;
+package link.arata.dro.mrconsumable.activity;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,13 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ListView;
 
-import java.util.List;
-
-import link.arata.dro.mrconsumable.ConsumableAdapter;
-import link.arata.dro.mrconsumable.dao.ConsumableDao;
-import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
-import link.arata.dro.mrconsumable.entity.Consumable;
-import link.arata.dro.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.R;
 import link.arata.dro.mrconsumable.model.ConsumableModel;
 import link.arata.dro.mrconsumable.model.ModelEvent;
 import link.arata.dro.mrconsumable.model.Observer;

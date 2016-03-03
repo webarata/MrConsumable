@@ -1,4 +1,4 @@
-package link.arata.dro.mrconsumable;
+package link.arata.dro.mrconsumable.activity;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -29,6 +29,7 @@ import link.arata.common.enums.TrimType;
 import link.arata.common.helper.ValidationHelper;
 import link.arata.dro.common.validator.RequiredValidator;
 import link.arata.dro.common.validator.ValidatorUtil;
+import link.arata.dro.mrconsumable.R;
 import link.arata.dro.mrconsumable.dao.ConsumableDao;
 import link.arata.dro.mrconsumable.dao.ConsumablePicDao;
 import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
