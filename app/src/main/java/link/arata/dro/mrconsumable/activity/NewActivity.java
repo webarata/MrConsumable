@@ -37,10 +37,13 @@ import link.arata.dro.mrconsumable.dao.impl.ConsumablePicDaoImpl;
 import link.arata.dro.mrconsumable.entity.Consumable;
 import link.arata.dro.mrconsumable.entity.ConsumablePic;
 import link.arata.dro.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.model.ConsumableModel;
+import link.arata.dro.mrconsumable.model.ModelEvent;
+import link.arata.dro.mrconsumable.model.Observer;
 import link.arata.dro.mrconsumable.util.ImageUtil;
 import link.arata.dro.mrconsumable.util.IoUtil;
 
-public class NewActivity extends AppCompatActivity {
+public class NewActivity extends AppCompatActivity implements Observer {
     private AppCompatEditText nameEditText;
     private AppCompatEditText furiganaEditText;
     private AppCompatEditText noteEditText;
@@ -50,6 +53,16 @@ public class NewActivity extends AppCompatActivity {
     private String imagePath;
     private static final int REQUEST_CODE_TAKE_IMAGE = 0;
     private static final int REQUEST_CODE_IMAGE_CHOOSER = 1;
+
+    private ConsumableModel consumableModel;
+
+    @Override
+    public void notify(ModelEvent modelEvent) {
+        switch (modelEvent) {
+            case FINISH_FETCH_CONSUMABLE_LIST:
+                break;
+        }
+    }
 
     public static Intent createIntent(Context context) {
         Intent intent = new Intent();
@@ -64,6 +77,9 @@ public class NewActivity extends AppCompatActivity {
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 //        setSupportActionBar(toolbar);
+
+        consumableModel = ConsumableModel.getInstance();
+        consumableModel.addObserver(this);
 
         nameEditText = (AppCompatEditText) findViewById(R.id.nameEditText);
         furiganaEditText = (AppCompatEditText) findViewById(R.id.furiganaEditText);
@@ -210,5 +226,11 @@ public class NewActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        consumableModel.removeObserver(this);
     }
 }
