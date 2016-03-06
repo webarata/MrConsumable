@@ -60,7 +60,7 @@ public class ConsumableDaoTest {
     public void データの登録のテスト() throws Exception {
         prepareData();
 
-        Consumable consumable = new ConsumableBuilder().createConsumable();
+        Consumable consumable = new Consumable();
         consumable.setConsumableName("単四電池");
         consumable.setConsumableFurigana("タンヨンデンチ");
         consumable.setConsumableNote("備考");
@@ -93,7 +93,7 @@ public class ConsumableDaoTest {
     public void データの初期登録のテスト() throws Exception {
         prepareData();
 
-        Consumable consumable = new ConsumableBuilder().createConsumable();
+        Consumable consumable = new Consumable();
         consumable.setConsumableName("単四電池");
         consumable.setConsumableFurigana("タンヨンデンチ");
         consumable.setConsumableNote("備考");
