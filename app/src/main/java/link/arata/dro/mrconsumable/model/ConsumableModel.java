@@ -3,13 +3,21 @@ package link.arata.dro.mrconsumable.model;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import link.arata.dro.mrconsumable.dao.ConsumableDao;
+import link.arata.dro.mrconsumable.dao.ConsumablePicDao;
 import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
+import link.arata.dro.mrconsumable.dao.impl.ConsumablePicDaoImpl;
 import link.arata.dro.mrconsumable.entity.Consumable;
+import link.arata.dro.mrconsumable.entity.ConsumablePic;
 import link.arata.dro.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.util.IoUtil;
 
 /**
  * モデル
@@ -80,5 +88,32 @@ public class ConsumableModel {
         appOpenHelper.close();
 
         notifyObserver(ModelEvent.FINISH_FETCH_CONSUMABLE_LIST);
+    }
+
+    public void registerConsumable(Context context, Consumable consumable) {
+        AppOpenHelper appOpenHelper = new AppOpenHelper(context);
+        SQLiteDatabase db = appOpenHelper.getWritableDatabase();
+        ConsumableDao consumableDao = new ConsumableDaoImpl(db);
+
+        long consumableId = consumableDao.insertInit(consumable);
+
+        /*
+        if (imagePath != null) {
+            ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
+            ConsumablePic consumablePic = new ConsumablePic();
+            consumablePic.setConsumableId(consumableId);
+            InputStream is = null;
+            try {
+                is = new FileInputStream(new File(imagePath));
+                consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
+                consumablePicDao.insert(consumablePic);
+            } catch (IOException e) {
+            }
+        }*/
+
+        db.close();
+        appOpenHelper.close();
+
+        notifyObserver(ModelEvent.FINISH_REGISTER_CONSUMABLE);
     }
 }

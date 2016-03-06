@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,29 +18,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import link.arata.common.enums.LineBreakType;
 import link.arata.common.enums.TrimType;
 import link.arata.common.helper.ValidationHelper;
 import link.arata.dro.common.validator.RequiredValidator;
 import link.arata.dro.common.validator.ValidatorUtil;
 import link.arata.dro.mrconsumable.R;
-import link.arata.dro.mrconsumable.dao.ConsumableDao;
-import link.arata.dro.mrconsumable.dao.ConsumablePicDao;
-import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
-import link.arata.dro.mrconsumable.dao.impl.ConsumablePicDaoImpl;
 import link.arata.dro.mrconsumable.entity.Consumable;
-import link.arata.dro.mrconsumable.entity.ConsumablePic;
-import link.arata.dro.mrconsumable.helper.AppOpenHelper;
+import link.arata.dro.mrconsumable.entity.ConsumableBuilder;
 import link.arata.dro.mrconsumable.model.ConsumableModel;
 import link.arata.dro.mrconsumable.model.ModelEvent;
 import link.arata.dro.mrconsumable.model.Observer;
 import link.arata.dro.mrconsumable.util.ImageUtil;
-import link.arata.dro.mrconsumable.util.IoUtil;
 
 public class NewActivity extends AppCompatActivity implements Observer {
     private AppCompatEditText nameEditText;
@@ -59,7 +47,16 @@ public class NewActivity extends AppCompatActivity implements Observer {
     @Override
     public void notify(ModelEvent modelEvent) {
         switch (modelEvent) {
-            case FINISH_FETCH_CONSUMABLE_LIST:
+            case FINISH_REGISTER_CONSUMABLE:
+                // 登録できたらフォームの情報を消す
+                nameEditText.setText("");
+                furiganaEditText.setText("");
+                noteEditText.setText("");
+
+                finish();
+
+                Toast.makeText(this, "消耗品を登録しました", Toast.LENGTH_SHORT).show();
+
                 break;
         }
     }
@@ -100,41 +97,13 @@ public class NewActivity extends AppCompatActivity implements Observer {
                     new RequiredValidator());
 
                 if (isValid) {
-                    AppOpenHelper appOpenHelper = new AppOpenHelper(v.getContext());
-                    SQLiteDatabase db = appOpenHelper.getWritableDatabase();
-                    ConsumableDao consumableDao = new ConsumableDaoImpl(db);
+                    Consumable consumable = new ConsumableBuilder()
+                        .setConsumableName(name)
+                        .setConsumableFurigana(furigana)
+                        .setConsumableNote(note)
+                        .createInstance();
 
-                    Consumable consumable = new Consumable();
-                    consumable.setConsumableName(name);
-                    consumable.setConsumableFurigana(furigana);
-                    consumable.setConsumableNote(note);
-
-                    long consumableId = consumableDao.insertInit(consumable);
-
-                    if (imagePath != null) {
-                        ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
-                        ConsumablePic consumablePic = new ConsumablePic();
-                        consumablePic.setConsumableId(consumableId);
-                        InputStream is = null;
-                        try {
-                            is = new FileInputStream(new File(imagePath));
-                            consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
-                            consumablePicDao.insert(consumablePic);
-                        } catch (IOException e) {
-                        }
-                    }
-
-                    db.close();
-                    appOpenHelper.close();
-
-                    // 登録できたらフォームの情報を消す
-                    nameEditText.setText("");
-                    furiganaEditText.setText("");
-                    noteEditText.setText("");
-
-                    finish();
-
-                    Toast.makeText(v.getContext(), "消耗品を登録しました", Toast.LENGTH_SHORT).show();
+                    consumableModel.registerConsumable(v.getContext(), consumable);
                 }
             }
         });

@@ -39,6 +39,12 @@ public class Consumable {
     private String consumableDate;
     private int consumableCount;
 
+    /**
+     * デフォルトコンストラクタ
+     */
+    public Consumable() {
+    }
+
     public long getConsumableId() {
         return consumableId;
     }

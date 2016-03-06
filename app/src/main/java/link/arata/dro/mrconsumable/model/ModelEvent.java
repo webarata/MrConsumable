@@ -5,5 +5,5 @@ package link.arata.dro.mrconsumable.model;
  * @author arata
  */
 public enum ModelEvent {
-    FINISH_FETCH_CONSUMABLE_LIST
+    FINISH_FETCH_CONSUMABLE_LIST, FINISH_REGISTER_CONSUMABLE
 }
