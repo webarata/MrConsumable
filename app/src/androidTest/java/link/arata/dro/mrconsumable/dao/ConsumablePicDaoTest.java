@@ -18,7 +18,6 @@ import java.io.InputStream;
 import link.arata.dro.mrconsumable.dao.impl.ConsumablePicDaoImpl;
 import link.arata.dro.mrconsumable.entity.ConsumablePic;
 import link.arata.dro.mrconsumable.helper.AppOpenHelper;
-import link.arata.dro.mrconsumable.util.IoUtil;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;

@@ -103,7 +103,7 @@ public class NewActivity extends AppCompatActivity implements Observer {
                         .setConsumableNote(note)
                         .createInstance();
 
-                    consumableModel.registerConsumable(v.getContext(), consumable);
+                    consumableModel.registerConsumable(v.getContext(), consumable, imagePath);
                 }
             }
         });
