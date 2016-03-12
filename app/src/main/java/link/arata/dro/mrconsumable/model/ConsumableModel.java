@@ -14,9 +14,7 @@ import java.util.List;
 
 import link.arata.common.util.IoUtil;
 import link.arata.dro.mrconsumable.dao.ConsumableDao;
-import link.arata.dro.mrconsumable.dao.ConsumablePicDao;
 import link.arata.dro.mrconsumable.dao.impl.ConsumableDaoImpl;
-import link.arata.dro.mrconsumable.dao.impl.ConsumablePicDaoImpl;
 import link.arata.dro.mrconsumable.entity.Consumable;
 import link.arata.dro.mrconsumable.entity.ConsumablePic;
 import link.arata.dro.mrconsumable.helper.AppOpenHelper;
@@ -100,16 +98,16 @@ public class ConsumableModel {
         long consumableId = consumableDao.insertInit(consumable);
 
         if (imagePath != null) {
-            ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
-            ConsumablePic consumablePic = new ConsumablePic();
-            consumablePic.setConsumableId(consumableId);
-            InputStream is = null;
-            try {
-                is = new FileInputStream(new File(imagePath));
-                consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
-                consumablePicDao.insert(consumablePic);
-            } catch (IOException e) {
-            }
+//            ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
+//            ConsumablePic consumablePic = new ConsumablePic();
+//            consumablePic.setConsumableId(consumableId);
+//            InputStream is = null;
+//            try {
+//                is = new FileInputStream(new File(imagePath));
+//                consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
+//                consumablePicDao.insert(consumablePic);
+//            } catch (IOException e) {
+//            }
         }
 
         db.close();
