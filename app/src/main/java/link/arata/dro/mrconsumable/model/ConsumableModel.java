@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +70,7 @@ public class ConsumableModel {
 
     /**
      * 消耗品の一覧の取得
+     *
      * @return 消耗品の一覧
      */
     public List<Consumable> getConsumableList() {
@@ -77,6 +79,7 @@ public class ConsumableModel {
 
     /**
      * 消耗品一覧の取得。取得後はFINISH_FETCH_CONSUMABLE_LISTイベントが発生する
+     *
      * @param context コンテキスト
      */
     public void fetchConsumableList(Context context) {
@@ -98,16 +101,12 @@ public class ConsumableModel {
         long consumableId = consumableDao.insertInit(consumable);
 
         if (imagePath != null) {
-//            ConsumablePicDao consumablePicDao = new ConsumablePicDaoImpl(db);
-//            ConsumablePic consumablePic = new ConsumablePic();
-//            consumablePic.setConsumableId(consumableId);
-//            InputStream is = null;
-//            try {
-//                is = new FileInputStream(new File(imagePath));
-//                consumablePic.setConsumablePic(IoUtil.readByteAndClose(is));
-//                consumablePicDao.insert(consumablePic);
-//            } catch (IOException e) {
-//            }
+            try {
+                context.openFileOutput(consumableId + ".jpg", Context.MODE_PRIVATE);
+                IoUtil.copyFile();
+                FileChannel inputChannel = new FileInputStream(new File(imagePath)).getChannel();
+            } catch (IOException e) {
+            }
         }
 
         db.close();
